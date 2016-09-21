@@ -1,0 +1,55 @@
+/*BUTTONS*/
+.button_type1{
+  padding:6px;
+  border-radius:$border-radius2;
+  position: relative;
+  z-index: 0;
+    &:hover{
+      &:before{
+        opacity: 0;
+      }
+      &:after{
+        opacity: 1;
+      }
+    }
+    &:before,&:after{
+      content:'';
+      position: absolute;
+      top:0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius:$border-radius2;
+      transition: opacity 1s;
+    }
+    &:before{
+      background:linear-gradient(180deg,rgba($color-group2__3, .5),$color-group2__2);
+    }
+    &:after{
+      background:linear-gradient(180deg,$color-group2__2,rgba($color-group2__4, .6));
+      opacity: 0;
+    }
+}
+  .button-container_type1{
+    @include font-size-line-height(16px);
+    text-shadow:0px 1px 0px $color-group1__7_a50;
+    color:$color-group1__1;
+    text-transform: uppercase;
+    background:linear-gradient(180deg,$color-group2__3,$color-group2__2);
+    align-items: center;
+    padding:6px 10px;
+    border-radius:$border-radius1;
+    box-shadow:inset 0px 0px 10px 0px rgba($color-group1__7, .33);
+    position: relative;
+    z-index: 1;
+      &:before{
+        content:'';
+        position: absolute;
+        top: 4%;
+        left: 2%;
+        width: 96%;
+        height: 86%;
+        border-radius:$border-radius1;
+        background:linear-gradient(180deg,rgba($color-group1__1,.4),rgba($color-group1__1,0) 55%);
+      }
+  }

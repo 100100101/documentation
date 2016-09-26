@@ -10,7 +10,11 @@
     {% for post in posts %}
       <li>
         <h2>{{ post.title }}</h2>
-        <p><a href="/post/{{ post.id }}">Read post</a></p>
+        <p><a href="/post/{{ post._id }}">Read post</a></p>
+
+        <br>
+        
+        <p><a href="/post/delete/{{ post._id }}">Remove post</a></p>
       </li>
     {% endfor %}
   </ul>

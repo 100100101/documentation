@@ -124,7 +124,7 @@ gulp.task('js-minify', function(cb){
 });
 
 /*SASS*/
-gulp.task('sass', function (cb){
+gulp.task('sass', function(cb){
   return pump([
      gulp.src(config.paths.src.scss)
      /* ,cache('linting') */
@@ -159,18 +159,18 @@ gulp.task('sass', function (cb){
     );
 });
 
-gulp.task('nodemon', function (cb){
+gulp.task('nodemon', function(cb){
   var started = false;
-  
+
 	return nodemon({
 		script: 'index.js'
     ,notify: true
 	})
 
   /*on start*/
-  .on('start', function () {
+  .on('start', function(){
     // to avoid nodemon being started multiple times
-    if (!started) {
+    if (!started){
       cb();
       started = true;
     }
@@ -178,13 +178,13 @@ gulp.task('nodemon', function (cb){
   })
 
   /*on restart*/
-  .on('restart', function (){
+  .on('restart', function(){
     console.log('reload');
     browserSync.reload;
   })
 
   /*on crash*/
-  .on('crash', function () {
+  .on('crash', function(){
     console.log('script crashed for some reason');
   });
 });

@@ -99,6 +99,8 @@ console.log(testdb);
   post.created_at = new Date;
   post.id = id;
   this.redirect('/');
+
+
 }
 
 // listen

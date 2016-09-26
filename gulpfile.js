@@ -70,7 +70,7 @@ var
 
 /*MODERNIZR*/
 gulp.task('modernizr', function(cb){
-  pump([
+  return pump([
      gulp.src(config.paths.src.js)
     ,modernizr('modernizr-custom.js'
     //   {
@@ -94,7 +94,7 @@ gulp.task('modernizr', function(cb){
 
 /*JS CONCAT*/
 gulp.task('js-concat', function(cb){
-  pump([
+  return pump([
      gulp.src(config.paths.src.js.partials)
     ,sourcemaps.init()
     ,concat(config.paths.src.js.mainFile)
@@ -109,7 +109,7 @@ gulp.task('js-concat', function(cb){
 });
 /*JS MINIFY*/
 gulp.task('js-minify', function(cb){
-  pump([
+  return pump([
      gulp.src(config.paths.src.js.root+'*.js')
     ,cache('linting')
     ,sourcemaps.init()
@@ -125,7 +125,7 @@ gulp.task('js-minify', function(cb){
 
 /*SASS*/
 gulp.task('sass', function (cb){
-  pump([
+  return pump([
      gulp.src(config.paths.src.scss)
      /* ,cache('linting') */
      /**/
@@ -160,19 +160,29 @@ gulp.task('sass', function (cb){
 });
 
 gulp.task('nodemon', function (cb){
-	var started = false;
+  var started = false;
+  
 	return nodemon({
 		script: 'index.js'
+    ,notify: true
 	})
+
   /*on start*/
   .on('start', function () {
-		// to avoid nodemon being started multiple times
-		if (!started) {
-			cb();
-			started = true;
-		}
+    // to avoid nodemon being started multiple times
+    if (!started) {
+      cb();
+      started = true;
+    }
     /*browserSync.reload();*/
-	})
+  })
+
+  /*on restart*/
+  .on('restart', function (){
+    console.log('reload');
+    browserSync.reload;
+  })
+
   /*on crash*/
   .on('crash', function () {
     console.log('script crashed for some reason');
@@ -183,31 +193,31 @@ gulp.task('nodemon', function (cb){
 /*Server + watching files*/
 gulp.task('default', function(){
   /**/
-  gulp.run('sass');
+  // gulp.start('sass');
   /**/
-  // gulp.run('modernizr');
+  // gulp.start('modernizr');
   /**/
-  gulp.run('js-concat');
+  // gulp.start('js-concat');
   /**/
-  gulp.run('js-minify');
+  // gulp.start('js-minify');
   /*wath scss*/
-  gulp.watch(config.paths.watch.scss, ['sass']);
+  // gulp.watch(config.paths.watch.scss, ['sass']);
 
   /*wath js*/
-  gulp.watch(config.paths.src.js.partials, function(){
-    gulp.run('js-concat');
-  });
-  gulp.watch(config.paths.src.js.root+'*.js', function(){
-    gulp.run('js-minify');
-  });
+  // gulp.watch(config.paths.src.js.partials, function(){
+  //   gulp.start('js-concat');
+  // });
+  // gulp.watch(config.paths.src.js.root+'*.js', function(){
+  //   gulp.start('js-minify');
+  // });
 
   /*wath php*/
   /*gulp.watch('*.php').on('change', browserSync.reload);*/
   /*watch html*/
-  gulp.watch(config.paths.watch.html).on('change', browserSync.reload);
+  // gulp.watch(config.paths.watch.html).on('change', browserSync.reload);
   /**/
   browserSync.init(config.browserSync);
   /**/
-  gulp.run('nodemon');
+  gulp.start('nodemon');
 
 });

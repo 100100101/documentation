@@ -1,7 +1,0 @@
-console.log('part 1');
-
-console.log('part 2');
-
-console.log('part 3');
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhcnQxLmpzIiwicGFydDIuanMiLCJwYXJ0My5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FDREE7QUFDQTtBQ0RBO0FBQ0EiLCJmaWxlIjoibWFpbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnNvbGUubG9nKCdwYXJ0IDEnKTtcbiIsImNvbnNvbGUubG9nKCdwYXJ0IDInKTtcbiIsImNvbnNvbGUubG9nKCdwYXJ0IDMnKTtcbiJdLCJzb3VyY2VSb290IjoiL3NvdXJjZS8ifQ==

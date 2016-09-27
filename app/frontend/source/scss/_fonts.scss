@@ -1,0 +1,180 @@
+/*@font-face {
+    font-family: 'Roboto Thin';
+    src: url('../../dist/fonts/Roboto/robotothin.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotothin.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotothin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}*/
+/*@font-face {
+    font-family: 'Roboto Thin Italic';
+    src: url('../../dist/fonts/Roboto/robotothinitalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotothinitalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotothinitalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}*/
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('../../dist/fonts/Roboto/robotolight.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotolight.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotolight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto Light Italic';
+    src: url('../../dist/fonts/Roboto/robotolightitalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotolightitalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotolightitalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../dist/fonts/Roboto/roboto.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/roboto.woff') format('woff'),
+    url('../../dist/fonts/Roboto/roboto.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto Italic';
+    src: url('../../dist/fonts/Roboto/robotoitalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotoitalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotoitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('../../dist/fonts/Roboto/robotomedium.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotomedium.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotomedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto Medium Italic';
+    src: url('../../dist/fonts/Roboto/robotomediumitalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotomediumitalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotomediumitalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('../../dist/fonts/Roboto/robotobold.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotobold.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotobold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto Bold Italic';
+    src: url('../../dist/fonts/Roboto/robotobolditalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotobolditalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotobolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+/*@font-face {
+    font-family: 'Roboto Black';
+    src: url('../../dist/fonts/Roboto/robotoblack.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotoblack.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotoblack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}*/
+/*@font-face {
+    font-family: 'Roboto Black Italic';
+    src: url('../../dist/fonts/Roboto/robotoblackitalic.woff2') format('woff2'),
+    url('../../dist/fonts/Roboto/robotoblackitalic.woff') format('woff'),
+    url('../../dist/fonts/Roboto/robotoblackitalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}*/
+/*========================*/
+// @font-face {
+//   font-family: 'RobotoCondensedLight';
+//   src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedLight.eot');
+//   src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedLight.eot?#iefix')format('embedded-opentype'),
+//   url('../../dist/fonts/RobotoCondensed/RobotoCondensedLight.woff') format('woff'),
+//   url('../../dist/fonts/RobotoCondensed/RobotoCondensedLight.ttf') format('truetype');
+//   font-style: normal;
+//   font-weight: normal;
+// }
+// @font-face {
+//   font-family: 'RobotoCondensedRegular';
+//   src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedRegular.eot');
+//   src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedRegular.eot?#iefix')format('embedded-opentype'),
+//   url('../../dist/fonts/RobotoCondensed/RobotoCondensedRegular.woff') format('woff'),
+//   url('../../dist/fonts/RobotoCondensed/RobotoCondensedRegular.ttf') format('truetype');
+//   font-style: normal;
+//   font-weight: normal;
+// }
+// @font-face {
+//     font-family: 'RobotoCondensedBold';
+//     src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedBold.eot');
+//     src: url('../../dist/fonts/RobotoCondensed/RobotoCondensedBold.eot?#iefix')format('embedded-opentype'),
+//     url('../../dist/fonts/RobotoCondensed/RobotoCondensedBold.woff') format('woff'),
+//     url('../../dist/fonts/RobotoCondensed/RobotoCondensedBold.ttf') format('truetype');
+//     font-style: normal;
+//     font-weight: normal;
+// }
+/*===============*/
+@font-face {
+    font-family: 'RobotoCondensedRegular';
+    src: url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Regular.woff') format('woff'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf') format('truetype'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Regular.svg#RobotoCondensed-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RobotoCondensedBold';
+    src: url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Bold.woff') format('woff'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Bold.ttf') format('truetype'),
+    url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RobotoCondensedItalic';
+    src: url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Italic.eot?#iefix') format('embedded-opentype'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Italic.woff') format('woff'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Italic.ttf')  format('truetype'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-Italic.svg#RobotoCondensed-Italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'RobotoCondensedBoldItalic';
+    src: url('../../dist/fonts/RobotoCondensed/RobotoCondensed-BoldItalic.eot?#iefix') format('embedded-opentype'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-BoldItalic.woff') format('woff'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-BoldItalic.ttf')  format('truetype'),
+     url('../../dist/fonts/RobotoCondensed/RobotoCondensed-BoldItalic.svg#RobotoCondensed-BoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/*===============*/
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.eot?v=4.6.3');
+  src: url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'),
+  url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.woff2?v=4.6.3') format('woff2'),
+  url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.woff?v=4.6.3') format('woff'),
+  url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.ttf?v=4.6.3') format('truetype'),
+  url('../../dist/fonts/font-awesome-4.6.3/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,61 @@
+/*WIDTH RESTRICTION WRAPPER*/
+[class*='width-restriction-wrapper_type']{
+  width:100%;
+  margin:auto;
+  position: relative;
+}
+[class*='width-restriction-wrapper_type1']{
+
+}
+[class*='width-restriction-wrapper_type2']{
+  max-width:$width-restriction-wrapper_type2--max-width;
+  padding-left:$width-restriction-wrapper--pad-l-r;
+  padding-right:$width-restriction-wrapper--pad-l-r;
+
+}
+[class*='width-restriction-wrapper_type3']{
+  max-width:$width-restriction-wrapper_type3--max-width;
+  padding-left:$width-restriction-wrapper--pad-l-r;
+  padding-right:$width-restriction-wrapper--pad-l-r;
+}
+[class*='width-restriction-wrapper_type4']{
+  max-width:$width-restriction-wrapper_type4--max-width;
+  padding-left:$width-restriction-wrapper--pad-l-r;
+  padding-right:$width-restriction-wrapper--pad-l-r;
+}
+
+/*COLUMNS*/
+$max-col-width:($width-restriction-wrapper_type2--max-width - $width-restriction-wrapper--pad-l-r*2);
+$step-col-width:$max-col-width/$grig-cols-count;
+[class*=col_]{
+  width:100%;
+}
+
+@for $i from 1 through $grig-cols-count{
+  [class*='col_'][class*='_max#{$i}_']{
+    max-width:($step-col-width * $i);
+  }
+  [class*='col_'][class*='_min#{$i}_']{
+    min-width:($step-col-width * $i);
+  }
+  [class*='_m-l#{$i}']{
+    margin-left:($step-col-width * $i);
+  }
+  [class*='_m-r#{$i}']{
+    margin-right:($step-col-width * $i);
+  }
+}
+
+// @mixin make-grid-columns($breakpoints){
+//
+//   $breakpoint-counter: 0;
+//   @each $breakpoint in $breakpoints {
+//     $breakpoint-counter: ($breakpoint-counter + 1);
+//     @debug "The `#{$breakpoint}`";
+//     // .col_width#{$breakpoint}{
+//     //   max-width:($step-col-width * $breakpoint);
+//     // }
+//
+//   }
+// }
+// @include make-grid-columns(48);

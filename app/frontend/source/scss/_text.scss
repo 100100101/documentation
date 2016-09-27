@@ -1,0 +1,82 @@
+.edited-text-container{
+  flex-direction: column;
+    *{
+      display: inline-block;
+    }
+    p{
+      @include font-size-line-height(14px,20px);
+      letter-spacing: 0.85px;
+    }
+    *+p{
+      margin-top: 15px;
+    }
+}
+[class*='_upper']{
+  text-transform: uppercase;
+}
+/*TEXT GROUPS*/
+/*text group 1*/
+[class*='text-group1_']{
+  font-family:'RobotoCondensedRegular';
+}
+/*1*/
+[class*='text-group1_1']{
+  @include font-size-line-height(14px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/*2*/
+[class*='text-group1_2']{
+  @include font-size-line-height(30px);
+  letter-spacing: 1.5px;
+}
+/*text group 2*/
+[class*='text-group2_']{
+  font-family: 'RobotoCondensedBold';
+}
+[class*='text-group2_1']{
+  @include font-size-line-height(28px);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+[class*='text-group2_2']{
+  @include font-size-line-height(20px,19px);
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+[class*='text-group2_3']{
+  @include font-size-line-height(16px);
+  letter-spacing: 1.3px;
+}
+[class*='text-group2_4']{
+  @include font-size-line-height(14px);
+  letter-spacing: 0.7px;
+}
+/*text group 2*/
+[class*='text-group3_']{
+  font-family: 'Roboto';
+    // [class*='_bold']{
+    //   // font-family: 'Roboto Bold';
+    // }
+}
+[class*='text-group3_1']{
+  @include font-size-line-height(12px,16px);
+  letter-spacing: .7px;
+}
+[class*='text-group3_2']{
+  @include font-size-line-height(10px);
+  letter-spacing: .7px;
+}
+
+/*COLOR GROUPS*/
+/*color group 1*/
+[class*='_color-g1_4']{
+  color:$color-group1__4;
+}
+[class*='_color-g1_7']{
+  color:$color-group1__7;
+}
+/*color group 1*/
+[class*='_color-g2_1']{
+  color:$color-group2__1;
+}

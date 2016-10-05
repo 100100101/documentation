@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="./riot+compiler.min.js"></script>
+</head>
+<body>
+
+
+  <div class="container">
+    <todo-list>
+    </todo-list>
+  </div>
+
+
+  <my-test>
+
+  </my-test>
+
+  <script type="riot/tag" src="./todos-list.js"></script>
+  <!--riot tags-->
+
+
+
+
+
+  <script type="riot/tag">
+    <my-test>
+      <h1>Hello Riot!</h1>
+    </my-test>
+
+
+
+    <todo-list>
+
+      <ul>
+        <li each={tasks}>
+          {title}
+        </li>
+      </ul>
+
+      <script>
+        this.tasks = [
+          {title: 'title 1', ready: false}
+          ,{title: 'title 2', ready: false}
+        ]
+      </script>
+
+    </todo-list>
+    
+  </script>
+
+  <script>
+    riot.mount('*');
+  </script>
+
+</body>
+</html>

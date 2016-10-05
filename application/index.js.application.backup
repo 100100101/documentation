@@ -1,44 +1,33 @@
-var config = {
-      port:3011
-    };
+const config = new (require('../develop/libs/config/index.js'));
+console.log(config);
+// var config = {
+//       port:3011
+//     };
 /**
  * Module dependencies.
 */
-var path = require('path');
-
-var art = require('ascii-art');
-
-var http = require('http');
-var koa = require('koa');
-var mount = require('koa-mount');
-var serveStatic = require('koa-serve-static');
-var convert = require('koa-convert');
-
 var views = require('co-views');
 var logger = require('koa-logger');
 var route = require('koa-route');
-
-/*RESTful resource router*/
-// var router = require('koa-router');
 var parse = require('co-body');
+var koa = require('koa');
 
-var multer = require('koa-multer');
-// var helmet = require('koa-helmet');
 
-var app = module.exports = koa();
+global.app = module.exports = koa();
 
 // setup views mapping .html
 // to the swig template engine
-
-var render = views(__dirname + '/backend/core/view', {
+// console.log(config.paths.root+'./backend/core/views/')
+console.log(__dirname + '\\backend\\core\\views\\')
+var render = views(__dirname + '\\backend\\core\\views\\', {
   map: { html: 'swig' }
 });
 
 /*database*/
 var Datastore = require('nedb');
 var wrap = require('co-nedb');
-var db = new Datastore({
-		filename: '../data.db'
+var db = new Datastore({ 
+		filename: './data.db'
 		,autoload: true
  	});
 db.loadDatabase(function (err) {    // Callback is optional
@@ -56,48 +45,16 @@ var posts = [];
 app.use(logger());
 
 // route middleware
-// app.use(helmet());
 
-// app.use((ctx) => {
-//   ctx.body = 'Hello World';
-// });
-
-// app.use(function *(/*next*/){
-//   this.body = 'Hello Koa!'
-// });
-
-app.use(mount('/backend/core/view', convert(serveStatic(
-  path.join(__dirname, 'backend/core/view'),
-  /*config.serveStatic*/{}
-))));
+ 
+  app.model = new (require('./backend/core/model/index.js'))()
+  ,app.view 
+  ,app.controller = require('./backend/core/controller/index.js')
 
 
-
-
-
-
-app.use(route.get('/', list));
-app.use(route.get('/post/new', add));
-app.use(route.get('/post/delete/:id', del));
-app.use(route.get('/post/update/:id', update));
-app.use(route.get('/post/:id', show));
-app.use(route.post('/post', create));
 
 // route definitions
 
-/**
- * Post listing.
- */
-
-function *list() {
-  console.log('list');
-
-  // let res = yield postsDB.find({});
-
-  // this.body = yield render('list', {posts: res});
-  this.body = yield render('riot-test');
-
-}
 
 /**
  * Show creation form.
@@ -168,17 +125,9 @@ function *create() {
   post.created_at = new Date;
   post.id = id;
   this.redirect('/');
+
+
 }
-
 // listen
-http.createServer(app.callback()).listen(config.port);
-// app.listen(config.port);
-
-
-art.font(String(config.port), 'Doom', 'cyan', function(ascii){
-    console.log('listening on port: ');
-    console.log(ascii);
-});
-
-
-// console.log('listening on port '+config.port);
+app.listen(config.server.port);
+console.log('listening on port '+config.server.port);

@@ -1,11 +1,13 @@
+// var path = require('path');
+
 var config = {
       browserSync:{
         /*proxy: 'example.local/'*/
-        proxy: "localhost:3011"
-        // server:{
-        //   baseDir:'./'
-        //   ,index:'documentation.html'
-        // }
+        // proxy: "localhost:3011"
+        server:{
+          baseDir:/*path.dirname(require.main.filename)*/'./'
+          ,index:'riot-test.html'
+        }
        ,port:3010
        ,open: false
       }
@@ -192,6 +194,9 @@ gulp.task('nodemon', function(cb){
 
 /*Server + watching files*/
 gulp.task('default', function(){
-console.log(123);
+
+  // gulp.start()
+  browserSync.init(config.browserSync);
+  gulp.watch('./*.html' , browserSync.reload);
 
 });

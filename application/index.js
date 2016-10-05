@@ -11,7 +11,8 @@ var art = require('ascii-art');
 var http = require('http');
 var koa = require('koa');
 var mount = require('koa-mount');
-var serveStatic = require('koa-serve-static');
+// var serveStatic = require('koa-serve-static');
+var serveStatic = require('koa-static');
 var convert = require('koa-convert');
 
 var views = require('co-views');
@@ -24,13 +25,16 @@ var parse = require('co-body');
 
 var multer = require('koa-multer');
 // var helmet = require('koa-helmet');
+var sendfile = require('koa-sendfile');
+
+
 
 var app = module.exports = koa();
 
 // setup views mapping .html
 // to the swig template engine
-
-var render = views(__dirname + '/backend/core/view', {
+console.log(__dirname + '/backend/core/view/');
+var render = views(__dirname + '/backend/core/view/', {
   map: { html: 'swig' }
 });
 
@@ -66,17 +70,24 @@ app.use(logger());
 //   this.body = 'Hello Koa!'
 // });
 
+
+// serve files in public folder (css, js etc)
+app.use(serveStatic(__dirname + 'backend/core/view'));
+
+
 app.use(mount('/backend/core/view', convert(serveStatic(
   path.join(__dirname, 'backend/core/view'),
   /*config.serveStatic*/{}
 ))));
 
+app.use(function* index() {
+  yield sendfile(this, __dirname + '/backend/core/view/riot-test.html');
+});
 
 
 
 
-
-app.use(route.get('/', list));
+// app.use(route.get('/', list));
 app.use(route.get('/post/new', add));
 app.use(route.get('/post/delete/:id', del));
 app.use(route.get('/post/update/:id', update));
@@ -95,7 +106,7 @@ function *list() {
   // let res = yield postsDB.find({});
 
   // this.body = yield render('list', {posts: res});
-  this.body = yield render('riot-test');
+  this.body = yield render('riot-test.html');
 
 }
 

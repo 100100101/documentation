@@ -1,6 +1,8 @@
-var config = {
-      port:3011
-    };
+const config = new (require('../develop/libs/config/index.js'));
+console.log(config);
+// var config = {
+//       port:3011
+//     };
 /**
  * Module dependencies.
 */
@@ -9,12 +11,15 @@ var logger = require('koa-logger');
 var route = require('koa-route');
 var parse = require('co-body');
 var koa = require('koa');
-var app = module.exports = koa();
+
+
+global.app = module.exports = koa();
 
 // setup views mapping .html
 // to the swig template engine
-
-var render = views(__dirname + '/views', {
+// console.log(config.paths.root+'./backend/core/views/')
+console.log(__dirname + '\\backend\\core\\views\\')
+var render = views(__dirname + '\\backend\\core\\views\\', {
   map: { html: 'swig' }
 });
 
@@ -41,26 +46,15 @@ app.use(logger());
 
 // route middleware
 
-app.use(route.get('/', list));
-app.use(route.get('/post/new', add));
-app.use(route.get('/post/delete/:id', del));
-app.use(route.get('/post/update/:id', update));
-app.use(route.get('/post/:id', show));
-app.use(route.post('/post', create));
+ 
+  app.model = new (require('./backend/core/model/index.js'))()
+  ,app.view 
+  ,app.controller = require('./backend/core/controller/index.js')
+
+
 
 // route definitions
 
-/**
- * Post listing.
- */
-
-function *list() {
-  console.log('list');
-
-  let res = yield postsDB.find({});
-
-  this.body = yield render('list', {posts: res});
-}
 
 /**
  * Show creation form.
@@ -134,7 +128,6 @@ function *create() {
 
 
 }
-
 // listen
-app.listen(config.port);
-console.log('listening on port '+config.port);
+app.listen(config.server.port);
+console.log('listening on port '+config.server.port);

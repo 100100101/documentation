@@ -2,9 +2,9 @@
   "name": "big-project",
   "version": "0.1.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "application/index.js",
   "scripts": {
-    "gulp": "node ./node_modules/gulp/bin/gulp --gulpfile ./dev/libs/gulp/gulpfile.js",
+    "gulp": "node ./node_modules/gulp/bin/gulp --gulpfile ./develop/libs/gulp/gulpfile.js",
     "bower": "node ./node_modules/bower/bin/bower"
   },
   "author": "bibik",
@@ -16,6 +16,7 @@
     "compass-mixins": "^0.12.10",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-cached": "^1.1.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",

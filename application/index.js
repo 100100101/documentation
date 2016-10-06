@@ -1,195 +1,98 @@
-var config = {
-      port:3011
-    };
-/**
- * Module dependencies.
-*/
-var path = require('path');
+const
+  config = {
+    application: {
+      name: '"name from package.json5"'
+    }
+    ,server: {
+      port: 3000
+    }
 
-var art = require('ascii-art');
+  };
 
-var http = require('http');
-var koa = require('koa');
-var mount = require('koa-mount');
-// var serveStatic = require('koa-serve-static');
-var serveStatic = require('koa-static');
-var convert = require('koa-convert');
+const
+  /*other*/
+  path = require('path')
+  ,http = require('http')
+  ,art = require('ascii-art')
+  /*/other/*/
 
-var views = require('co-views');
-var logger = require('koa-logger');
-var route = require('koa-route');
+  /*koa modules*/
+  ,app = new (require('koa'))()
+  /**/
+  ,convert = require('koa-convert')
+  /**/
+  ,logger = require('koa-logger')
+  /*routing*/
+  // ,route = require('koa-route')
+  /*RESTful resource router*/
+  ,router = new (require('koa-router'))()
 
-/*RESTful resource router*/
-// var router = require('koa-router');
-var parse = require('co-body');
+  /**/
+  // ,serveStatic = require('koa-static')
+  /**/
+  ,serve = require('koa-static')
+  /**/
+  ,bodyParser = require('koa-bodyparser')
+  /**/
+  ,views = require('koa-views')
 
-var multer = require('koa-multer');
-// var helmet = require('koa-helmet');
-var sendfile = require('koa-sendfile');
-
-
-
-var app = module.exports = koa();
-
-// setup views mapping .html
-// to the swig template engine
-console.log(__dirname + '/backend/core/view/');
-var render = views(__dirname + '/backend/core/view/', {
-  map: { html: 'swig' }
-});
-
-/*database*/
-var Datastore = require('nedb');
-var wrap = require('co-nedb');
-var db = new Datastore({
-		filename: '../data.db'
-		,autoload: true
- 	});
-db.loadDatabase(function (err) {    // Callback is optional
-  // Now commands will be executed
-});
+  // ,mount = require('koa-mount')
+  // ,serveStatic = require('koa-serve-static')
+  ;
 
 
-var postsDB = wrap(db);
+/*middlewares*/
+app.use(convert(logger()));
 
 
-var posts = [];
+// $ GET /package.json
+app.use(convert(serve('.')));
 
-// middleware
+/**/
+app.use(convert(bodyParser()));
+/**/
 
-app.use(logger());
+// Must be used before any router is used
+app.use(views(__dirname + '/backend/core/view'));
 
-// route middleware
-// app.use(helmet());
-
-// app.use((ctx) => {
-//   ctx.body = 'Hello World';
-// });
-
-// app.use(function *(/*next*/){
-//   this.body = 'Hello Koa!'
-// });
-
-
-// serve files in public folder (css, js etc)
-app.use(serveStatic(__dirname + 'backend/core/view'));
-
-
-app.use(mount('/backend/core/view', convert(serveStatic(
-  path.join(__dirname, 'backend/core/view'),
-  /*config.serveStatic*/{}
-))));
-
-app.use(function* index() {
-  yield sendfile(this, __dirname + '/backend/core/view/riot-test.html');
-});
-
-
-
-
-// app.use(route.get('/', list));
-app.use(route.get('/post/new', add));
-app.use(route.get('/post/delete/:id', del));
-app.use(route.get('/post/update/:id', update));
-app.use(route.get('/post/:id', show));
-app.use(route.post('/post', create));
-
+// app.use(
+//   async (ctx, next) => {
+//     await console.log(ctx.request);
+//   }
+// );
 // route definitions
+router.get('/*',
+  function* (){
+    console.log('root');
+    // this.body = yield 'This is root!'/*render('riot-test.html')*/;
+    // this.body = yield 'test';
+    console.log(this.request);
 
-/**
- * Post listing.
- */
+    yield this.render('riot-test');
+  }
+);
 
-function *list() {
-  console.log('list');
-
-  // let res = yield postsDB.find({});
-
-  // this.body = yield render('list', {posts: res});
-  this.body = yield render('riot-test.html');
-
-}
-
-/**
- * Show creation form.
- */
-
-function *add() {
-  console.log('add');
-  this.body = yield render('new');
-}
-
-
-function *update(id){
-	let res = yield postsDB.findOne({_id: id});
-
-}
-
-function *del(id){
-  console.log('del');
-
-  let res = yield postsDB.findOne({_id: id});
-  // var post = posts[id];
-
-
-  if (!res) this.throw(404, 'invalid post id');
-
-  yield postsDB.remove({_id: id});
-  this.throw(200, 'post delete');
-}
-/**
- * Show post :id.
- */
-function *show(id) {
-  console.log('show');
-  let res = yield postsDB.findOne({_id: id});
-  // var post = posts[id];
-
-
-  if (!res) this.throw(404, 'invalid post id');
-
-
-  this.body = yield render('show', { post: res });
-}
-/**
- * Create a post.
- */
+/*/middlewares/*/
 
 
 
-function *create() {
-  var post = yield parse(this);
+// router.get('/', function *(next) {...});
+ app
+   .use(convert(router.routes()))
+   .use(convert(router.allowedMethods()));
 
 
-  yield postsDB.insert(post);
-  console.log('create')
-//   // console.log(post)
-//   db.insert(post, function (err, newDoc){   // Callback is optional
-//   // newDoc is the newly inserted document, including its _id
-//   // newDoc has no key called notToBeSaved since its value was undefined
-//   // console.log(newDoc);
-//   });
-// var testdb
-//   db.find({}, function (err, docs) {
-//     testdb=docs;
-//   });
-// console.log(testdb);
-
-  var id = posts.push(post) - 1;
-  post.created_at = new Date;
-  post.id = id;
-  this.redirect('/');
-}
-
-// listen
-http.createServer(app.callback()).listen(config.port);
-// app.listen(config.port);
 
 
-art.font(String(config.port), 'Doom', 'cyan', function(ascii){
-    console.log('listening on port: ');
-    console.log(ascii);
+
+/*listen*/
+http.createServer(app.callback()).listen(config.server.port, function(){
+
+  art.font(String(config.server.port), 'Doom', 'cyan', function(ascii){
+
+      console.log('%s listening at port %d', config.application.name, config.server.port);
+      console.log(ascii);
+
+  });
+
 });
-
-
-// console.log('listening on port '+config.port);
